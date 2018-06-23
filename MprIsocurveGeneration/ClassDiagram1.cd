@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MprIsocurveGeneration.Models.MprImageModel">
+    <Position X="6" Y="13.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="MprIsocurveGeneration.Models.MprImageModel.Orientation" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\MprImageModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AACAAAAABAAAAACAAEAAAIAAAAAAKKAAAAAARAAAAAA=</HashCode>
+      <FileName>Models\MprImageModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="InputVolume" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MprIsocurveGeneration.Models.UniformImageVolumeModel">
+    <Position X="5.5" Y="9.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAQAFAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UniformImageVolumeModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MprIsocurveGeneration.Services.ModelRepository" BaseTypeListCollapsed="true">
+    <Position X="9" Y="10.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAwAAAAAAAAAAAAAAgCIAAAAACQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ModelRepository.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="_mprImages" />
+      <Field Name="_imageVolumes" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MprIsocurveGeneration.ViewModels.IsocurveViewModel" BaseTypeListCollapsed="true">
+    <Position X="2" Y="3.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAQABAAUBCAAAAAAAgASQAAAAAAAAAAABAAAAAEAA=</HashCode>
+      <FileName>ViewModels\IsocurveViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MprIsocurveGeneration.ViewModels.LayeredViewViewModel">
+    <Position X="10.5" Y="3.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <InheritanceLine Type="Prism.Mvvm.BindableBase" FixedToPoint="true">
+      <Path>
+        <Point X="8.125" Y="2.69" />
+        <Point X="8.125" Y="3.125" />
+        <Point X="10.562" Y="3.125" />
+        <Point X="10.562" Y="3.5" />
+      </Path>
+    </InheritanceLine>
+    <AssociationLine Name="PresentationState" Type="MprIsocurveGeneration.ViewModels.PresentationStateViewModel">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.025" Y="-0.461" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="ActiveLayer" Type="Prism.Mvvm.BindableBase" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.841" Y="3.5" />
+        <Point X="11.841" Y="1.188" />
+        <Point X="9.5" Y="1.188" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="PassiveLayer" Type="Prism.Mvvm.BindableBase" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.974" Y="3.5" />
+        <Point X="10.974" Y="2" />
+        <Point X="9.5" Y="2" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="BackgroundLayer" Type="Prism.Mvvm.BindableBase" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.407" Y="3.5" />
+        <Point X="11.407" Y="1.562" />
+        <Point X="9.5" Y="1.562" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AANRAAACAgBCUBwAQBAAASAMACCCAAAgAACQAAAEAAw=</HashCode>
+      <FileName>ViewModels\LayeredViewViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_repository" />
+      <Field Name="_renderUpdateManager" />
+      <Property Name="PresentationState" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="ActiveLayer" />
+      <Property Name="PassiveLayer" />
+      <Property Name="BackgroundLayer" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="MprIsocurveGeneration.ViewModels.MprImageViewModel" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="3.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="ImagePosition" Type="System.Windows.Media.Transform" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.312" Y="6.213" />
+        <Point X="5.312" Y="6.833" />
+        <Point X="3.75" Y="6.833" />
+        <Point X="3.75" Y="7.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAIAAhBQABAAAAAAAACIBAAAAIEAA=</HashCode>
+      <FileName>ViewModels\MprImageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MprBuffer" />
+      <Property Name="ImagePosition" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MprIsocurveGeneration.ViewModels.PresentationStateViewModel">
+    <Position X="7.5" Y="3.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="MprIsocurveGeneration.ViewModels.PresentationStateViewModel.Orientation" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModels\PresentationStateViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>EAAAAAQCBAAAIAAAAAAgAAAAAAAAQAAAAAgAAQAAAAA=</HashCode>
+      <FileName>ViewModels\PresentationStateViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="NavigationPointOnPlane" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Prism.Mvvm.BindableBase">
+    <Position X="6.75" Y="0.75" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Windows.Media.PathGeometry" Collapsed="true">
+    <Position X="19.75" Y="1" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Windows.Media.ImageSource" Collapsed="true">
+    <Position X="5" Y="7.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="System.Windows.Media.Transform" Collapsed="true">
+    <Position X="3" Y="7.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MprIsocurveGeneration.Services.FrameUpdateManager">
+    <Position X="17.25" Y="0.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="MprIsocurveGeneration.Services.FrameUpdateManager.FrameUpdateBatch">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\FrameUpdateManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACQAAAAQAABAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Services\FrameUpdateManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Struct Name="System.Windows.Point" Collapsed="true">
+    <Position X="8" Y="7.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Interface Name="MprIsocurveGeneration.Services.IModelRepository">
+    <Position X="13.75" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAgAIAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IModelRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MprIsocurveGeneration.Services.IFrameUpdateManager">
+    <Position X="13.75" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAABAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Contracts\IFrameUpdateManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

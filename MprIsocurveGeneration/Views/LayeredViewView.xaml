@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="MprIsocurveGeneration.Views.LayeredViewView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Wpf"
+             xmlns:local="clr-namespace:MprIsocurveGeneration.Views" 
+             xmlns:localvm="clr-namespace:MprIsocurveGeneration.ViewModels"
+             mvvm:ViewModelLocator.AutoWireViewModel="True">
+
+    <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+            BorderThickness="2" BorderBrush="DarkTurquoise" Background="SlateGray">
+        
+        <!-- TODO: turn this Grid to Canvas, but must position child canvases correctly -->
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+              ClipToBounds="True">
+
+            <ItemsControl x:Name="BackgroundLayerContainer" 
+                          ItemsSource="{Binding BackgroundLayer}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas Width="0" Height="0" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+
+            <ItemsControl x:Name="PassiveLayerCanvas" 
+                          ItemsSource="{Binding PassiveLayer}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas Width="0" Height="0" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+
+            <ItemsControl x:Name="ActiveLayerCanvas"
+                          ItemsSource="{Binding ActiveLayer}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas Width="0" Height="0" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+
+            <!--<CheckBox VerticalAlignment="Bottom" HorizontalAlignment="Left" Foreground="DarkGray"
+                IsChecked="{Binding UseBackgroundUpdate}">Background Update</CheckBox>-->
+            
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right">
+                <TextBlock HorizontalAlignment="Right" 
+                           Foreground="LightGray" Background="#88444444" 
+                           Text="{Binding FrameRatePerformance.AverageDurationString}" />
+                <TextBlock HorizontalAlignment="Right" 
+                           Foreground="LightGray" Background="#88444444" 
+                           Text="{Binding BackgroundLayerPerformance.AverageDurationString}" />
+                <TextBlock HorizontalAlignment="Right" 
+                           Foreground="LightGray" Background="#88444444" 
+                           Text="{Binding PassiveLayerPerformance.AverageDurationString}" />
+                <TextBlock HorizontalAlignment="Right" 
+                           Foreground="LightGray" Background="#88444444" 
+                           Text="{Binding UiUpdatePerformance.AverageDurationString}" />
+            </StackPanel>          
+            
+            <Grid.RenderTransform>
+                <ScaleTransform ScaleX="1.0" ScaleY="1.0" />
+            </Grid.RenderTransform>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="MprIsocurveGeneration.Views.IsocurveControlView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Wpf"
+             Foreground="White"
+             mvvm:ViewModelLocator.AutoWireViewModel="True">
+
+    <Border Style="{StaticResource SidebarControlBorder}">
+        <UniformGrid Grid.Row="1" Rows="1" Columns="2">
+            <TextBlock Margin="4" TextAlignment="Right" Text="Isocurve levels:" />
+            <Slider Margin="4" Minimum="1" Maximum="10" 
+                    IsSnapToTickEnabled="True" TickFrequency="1" TickPlacement="TopLeft"
+                    Value="{Binding IsocurveLevels}"/>                    
+        </UniformGrid>
+    </Border>
+    
+</UserControl>

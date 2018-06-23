@@ -1,0 +1,22 @@
+﻿<Window x:Class="MprIsocurveGeneration.Shell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://www.codeplex.com/prism"
+        xmlns:local="clr-namespace:MprIsocurveGeneration.Views"
+        Height="350" Width="725">
+    <Border Background="WhiteSmoke">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            
+            <ContentControl Grid.Column="0" prism:RegionManager.RegionName="BlockLayoutRegion">
+            </ContentControl>
+
+            <ItemsControl Grid.Column="1" prism:RegionManager.RegionName="SidebarRegion">
+            </ItemsControl>
+
+        </Grid>
+    </Border>
+</Window>
