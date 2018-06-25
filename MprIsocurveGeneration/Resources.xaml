@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:localvm="clr-namespace:MprIsocurveGeneration.ViewModels"             
-                    xmlns:local="clr-namespace:MprIsocurveGeneration.Views">
+                    xmlns:rendervm="clr-namespace:RenderModule.ViewModels;assembly=RenderModule"
+                    xmlns:renderview="clr-namespace:RenderModule.Views;assembly=RenderModule">
 
     <Style x:Key="SidebarControlBorder" TargetType="Border">
         <Setter Property="BorderBrush" Value="Orchid" />
@@ -16,21 +16,21 @@
         <Setter Property="Background" Value="DarkBlue" />
         <Setter Property="Margin" Value="3" />
     </Style>
-    
-    <DataTemplate DataType="{x:Type localvm:LayeredViewViewModel}">
-        <local:LayeredViewView />
-    </DataTemplate>
-    
-    <DataTemplate DataType="{x:Type localvm:PresentationStateViewModel}">
-        <local:PresentationStateView />
+
+    <!--<DataTemplate DataType="{x:Type rendervm:LayeredViewViewModel}">
+        <renderview:LayeredViewView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type localvm:MprImageViewModel}">
-        <local:MprImageView />
+    <DataTemplate DataType="{x:Type rendervm:PresentationStateViewModel}">
+        <renderview:PresentationStateView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type localvm:IsocurveViewModel}">
-        <local:IsocurveView />
+    <DataTemplate DataType="{x:Type rendervm:MprImageViewModel}">
+        <renderview:MprImageView />
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type rendervm:IsocurveViewModel}">
+        <renderview:IsocurveView />
+    </DataTemplate>-->
 
 </ResourceDictionary>

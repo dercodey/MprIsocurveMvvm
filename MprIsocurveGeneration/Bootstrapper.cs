@@ -28,6 +28,11 @@ namespace MprIsocurveGeneration
                     typeof(DataLoaderModule.Module).AssemblyQualifiedName);
             ModuleCatalog.AddModule(dataLoaderModuleInfo);
 
+            var renderModuleInfo =
+                new ModuleInfo("RenderModule.Module",
+                    typeof(RenderModule.Module).AssemblyQualifiedName);
+            ModuleCatalog.AddModule(renderModuleInfo);
+
             var mprIsocurveGenerationModuleInfo = 
                 new ModuleInfo("MprIsocurveGeneration.Module", 
                     typeof(MprIsocurveGeneration.Module).AssemblyQualifiedName);

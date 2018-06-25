@@ -9,11 +9,11 @@ using Prism.Events;
 
 using AutoMapper;
 
+using Infrastructure.Events;
+
 using RenderModule.Interfaces;
 
-using MprIsocurveGeneration.Events;
-
-namespace MprIsocurveGeneration.ViewModels
+namespace RenderModule.ViewModels
 {
     /// <summary>
     /// represents the presentation state for a view: view geometry

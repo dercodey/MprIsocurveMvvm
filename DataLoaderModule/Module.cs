@@ -4,6 +4,8 @@ using Prism.Events;
 using Prism.Modularity;
 using Prism.Regions;
 
+using Infrastructure.Interfaces;
+
 using DataLoaderModule.Interfaces;
 using DataLoaderModule.Services;
 using DataLoaderModule.Views;

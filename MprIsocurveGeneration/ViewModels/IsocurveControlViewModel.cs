@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Input;
-
+﻿
 using Prism.Mvvm;
 using Prism.Events;
 
-using MprIsocurveGeneration.Events;
-using MprIsocurveGeneration.Services;
-
+using Infrastructure.Events;
 
 namespace MprIsocurveGeneration.ViewModels
 {

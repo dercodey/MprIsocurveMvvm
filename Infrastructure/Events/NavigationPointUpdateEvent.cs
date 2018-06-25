@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Media.Media3D;
 
 using Prism.Events;
 
-
-namespace MprIsocurveGeneration.Events
+namespace Infrastructure.Events
 {
     public class NavigationPointUpdateEventArgs
     {

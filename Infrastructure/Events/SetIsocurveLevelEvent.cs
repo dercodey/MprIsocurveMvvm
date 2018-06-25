@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 using Prism.Events;
 
-namespace MprIsocurveGeneration.Events
+namespace Infrastructure.Events
 {
     public class SetIsocurveLevelEventArgs
     {

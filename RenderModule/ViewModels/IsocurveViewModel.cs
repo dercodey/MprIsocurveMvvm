@@ -12,16 +12,13 @@ using Microsoft.Practices.Unity;
 using Prism.Mvvm;
 
 using Infrastructure.Utilities;
-
-using DataLoaderModule.Interfaces;
+using Infrastructure.Interfaces;
 
 using RenderModule.Models;
 using RenderModule.Interfaces;
 
-using MprIsocurveGeneration.Utilities;
 
-
-namespace MprIsocurveGeneration.ViewModels
+namespace RenderModule.ViewModels
 {
     using Orientation = MprImageModel.Orientation;
 

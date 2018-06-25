@@ -2,7 +2,7 @@
 
 using Infrastructure.Interfaces;
 
-namespace DataLoaderModule.Interfaces
+namespace Infrastructure.Interfaces
 {
     /// <summary>
     /// 

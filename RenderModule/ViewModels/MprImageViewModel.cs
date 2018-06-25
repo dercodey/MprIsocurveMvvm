@@ -8,13 +8,12 @@ using Prism.Mvvm;
 using AutoMapper;
 
 using Infrastructure.Utilities;
-
-using DataLoaderModule.Interfaces;
+using Infrastructure.Interfaces;
 
 using RenderModule.Models;
 using RenderModule.Interfaces;
 
-namespace MprIsocurveGeneration.ViewModels
+namespace RenderModule.ViewModels
 {
     using Orientation = MprImageModel.Orientation;
 

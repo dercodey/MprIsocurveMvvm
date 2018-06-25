@@ -3,9 +3,7 @@ using System.Windows.Media;
 
 using Prism.Mvvm;
 
-using RenderModule.Models;
-
-namespace MprIsocurveGeneration.Utilities
+namespace RenderModule.Models
 {
     /// <summary>
     /// Generates and update isocurves bindable to the Geometry path

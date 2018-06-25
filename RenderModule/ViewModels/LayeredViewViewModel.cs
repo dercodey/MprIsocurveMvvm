@@ -14,16 +14,14 @@ using Prism.Mvvm;
 using AutoMapper;
 
 using Infrastructure.Utilities;
-
-using DataLoaderModule.Interfaces;
-using DataLoaderModule.Events;
+using Infrastructure.Events;
+using Infrastructure.Interfaces;
 
 using RenderModule.Interfaces;
 using RenderModule.Models;
+using RenderModule.ViewModels;
 
-using MprIsocurveGeneration.Events;
-
-namespace MprIsocurveGeneration.ViewModels
+namespace RenderModule.ViewModels
 {
     /// <summary>
     /// main LayeredViewViewModel is created by auto-wiring from the view,
@@ -34,6 +32,7 @@ namespace MprIsocurveGeneration.ViewModels
         IUnityContainer _container;
         IEventAggregator _eventAggregator;
         IModelRepository _repository;
+
         SynchronizationContext _uiUpdateContext;
         IFrameUpdateManager _renderUpdateManager;
 

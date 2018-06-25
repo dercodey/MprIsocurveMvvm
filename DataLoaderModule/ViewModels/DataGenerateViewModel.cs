@@ -6,9 +6,12 @@ using Prism.Mvvm;
 using Prism.Events;
 using Microsoft.Practices.Unity;
 
+using Infrastructure.Interfaces;
+using Infrastructure.Events;
+
 using DataLoaderModule.Interfaces;
 using DataLoaderModule.Utilities;
-using DataLoaderModule.Events;
+
 
 namespace DataLoaderModule.ViewModels
 {

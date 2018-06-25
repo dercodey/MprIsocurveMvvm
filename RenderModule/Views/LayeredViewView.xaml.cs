@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace MprIsocurveGeneration.Views
+namespace RenderModule.Views
 {
     /// <summary>
     /// Interaction logic for LayeredViewView.xaml

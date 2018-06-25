@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -55,9 +58,14 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -72,20 +80,37 @@
     <Compile Include="Interfaces\IMprGenerationFunction.cs" />
     <Compile Include="Interfaces\IRenderedObject.cs" />
     <Compile Include="Models\ComplexGeometry.cs" />
+    <Compile Include="Models\IsocurveLevel.cs" />
     <Compile Include="Models\MprImageModel.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FrameUpdateManager.cs" />
     <Compile Include="Services\IsocurveFunction.cs" />
     <Compile Include="Services\MprGenerationFunction.cs" />
+    <Compile Include="ViewModels\IsocurveViewModel.cs" />
+    <Compile Include="ViewModels\LayeredViewViewModel.cs" />
+    <Compile Include="ViewModels\MprImageViewModel.cs" />
+    <Compile Include="ViewModels\PresentationStateViewModel.cs" />
+    <Compile Include="Views\BlockLayoutView.xaml.cs">
+      <DependentUpon>BlockLayoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IsocurveView.xaml.cs">
+      <DependentUpon>IsocurveView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LayeredViewView.xaml.cs">
+      <DependentUpon>LayeredViewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MprImageView.xaml.cs">
+      <DependentUpon>MprImageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PresentationStateView.xaml.cs">
+      <DependentUpon>PresentationStateView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
       <Project>{4d934733-e2ba-4ce3-90ae-d41321420bf9}</Project>
@@ -94,6 +119,28 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\BlockLayoutView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IsocurveView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LayeredViewView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MprImageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PresentationStateView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

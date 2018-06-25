@@ -2,7 +2,7 @@
 
 using Prism.Events;
 
-namespace DataLoaderModule.Events
+namespace Infrastructure.Events
 {
     public class ImageDataLoadedEventArgs
     {

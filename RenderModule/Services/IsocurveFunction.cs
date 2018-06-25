@@ -4,7 +4,7 @@ using System.Windows;
 using RenderModule.Interfaces;
 using RenderModule.Models;
 
-namespace MprIsocurveGeneration.Services
+namespace RenderModule.Services
 {
     /// <summary>
     /// 
