@@ -70,6 +70,7 @@
     <Compile Include="Interfaces\IFrameUpdateManager.cs" />
     <Compile Include="Interfaces\IIsocurveFunction.cs" />
     <Compile Include="Interfaces\IMprGenerationFunction.cs" />
+    <Compile Include="Interfaces\IRenderedObject.cs" />
     <Compile Include="Models\ComplexGeometry.cs" />
     <Compile Include="Models\MprImageModel.cs" />
     <Compile Include="Module.cs" />

@@ -12,15 +12,16 @@ using Infrastructure.Utilities;
 using DataLoaderModule.Interfaces;
 
 using RenderModule.Models;
+using RenderModule.Interfaces;
 
 namespace MprIsocurveGeneration.ViewModels
 {
-    using Orientation = PresentationStateViewModel.Orientation;
+    using Orientation = MprImageModel.Orientation;
 
     /// <summary>
     /// 
     /// </summary>
-    public class MprImageViewModel : BindableBase, IRenderedObjectViewModel
+    public class MprImageViewModel : BindableBase, IRenderedObject
     {
         IModelRepository _repository;
 

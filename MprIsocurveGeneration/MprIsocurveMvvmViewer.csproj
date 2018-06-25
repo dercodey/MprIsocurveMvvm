@@ -108,7 +108,6 @@
     <Compile Include="Events\NavigationPointUpdateEvent.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="ViewModels\IsocurveViewModel.cs" />
-    <Compile Include="ViewModels\IRenderedObjectViewModel.cs" />
     <Compile Include="ViewModels\LayeredViewViewModel.cs" />
     <Compile Include="ViewModels\MprImageViewModel.cs" />
     <Compile Include="ViewModels\PresentationStateViewModel.cs" />

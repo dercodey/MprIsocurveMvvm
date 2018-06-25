@@ -11,6 +11,10 @@ using Microsoft.Practices.Unity;
 using Prism.Events;
 using Prism.Mvvm;
 
+using AutoMapper;
+
+using Infrastructure.Utilities;
+
 using DataLoaderModule.Interfaces;
 using DataLoaderModule.Events;
 
@@ -18,7 +22,6 @@ using RenderModule.Interfaces;
 using RenderModule.Models;
 
 using MprIsocurveGeneration.Events;
-using Infrastructure.Utilities;
 
 namespace MprIsocurveGeneration.ViewModels
 {
@@ -213,11 +216,12 @@ namespace MprIsocurveGeneration.ViewModels
         // helper to update a single layer
         private void UpdateSingleLayer(Int64 timeStamp, IEnumerable<BindableBase> layer)
         {
-            foreach (var ro in layer.OfType<IRenderedObjectViewModel>())
+            foreach (var ro in layer.OfType<IRenderedObject>())
             {
                 // get the task that is producing the update action
                 Task<Action> uiUpdateAction = 
-                    ro.UpdateRenderedObject(PresentationState.ViewOrientation,
+                    ro.UpdateRenderedObject(Mapper.Map<PresentationStateViewModel.Orientation,
+                                                MprImageModel.Orientation>(PresentationState.ViewOrientation),
                         (int) PresentationState.SlicePosition);
 
                 // queue up the task

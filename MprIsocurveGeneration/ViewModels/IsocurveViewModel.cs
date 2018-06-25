@@ -20,14 +20,15 @@ using RenderModule.Interfaces;
 
 using MprIsocurveGeneration.Utilities;
 
+
 namespace MprIsocurveGeneration.ViewModels
 {
-    using Orientation = PresentationStateViewModel.Orientation;
+    using Orientation = MprImageModel.Orientation;
 
     /// <summary>
     /// Generates and update isocurves bindable to the Geometry path
     /// </summary>
-    public class IsocurveViewModel : BindableBase, IRenderedObjectViewModel
+    public class IsocurveViewModel : BindableBase, IRenderedObject
     {
         IUnityContainer _container;
         IModelRepository _repository;
