@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Concurrent;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Media;
 using System.Windows.Media.Media3D;
-using System.Runtime.InteropServices;
 
 using Microsoft.Practices.Unity;
 
 using Prism.Events;
 using Prism.Mvvm;
+
+using DataLoaderModule.Interfaces;
+using DataLoaderModule.Events;
 
 using MprIsocurveGeneration.Utilities;
 using MprIsocurveGeneration.Models;
@@ -54,16 +52,16 @@ namespace MprIsocurveGeneration.ViewModels
             System.Diagnostics.Trace.Assert(_uiUpdateContext != null);
 
             // create a new PresentationState view model and add to the active layer
-            _presentationState = _container.Resolve<PresentationStateViewModel>();
+            PresentationState = _container.Resolve<PresentationStateViewModel>();
             ActiveLayer.Add(PresentationState);
 
             // subscribe to events
             _eventAggregator.GetEvent<NavigationPointUpdateEvent>()
                 .Subscribe(OnNavigationPointUpdated, ThreadOption.UIThread);
-            _eventAggregator.GetEvent<ShowDataEvent>()
-                .Subscribe(OnShowDataEvent, ThreadOption.UIThread);
-            _eventAggregator.GetEvent<VolumeUpdateEvent>()
-                .Subscribe(OnVolumeUpdateEvent, ThreadOption.UIThread);
+            _eventAggregator.GetEvent<ImageDataLoadedEvent>()
+                .Subscribe(OnImageDataLoadedEvent, ThreadOption.UIThread);
+            _eventAggregator.GetEvent<VolumeUpdatedEvent>()
+                .Subscribe(OnVolumeUpdatedEvent, ThreadOption.UIThread);
             _eventAggregator.GetEvent<SetIsocurveLevelEvent>()
                 .Subscribe(OnSetIsocurveLevel, ThreadOption.UIThread);
 
@@ -83,41 +81,22 @@ namespace MprIsocurveGeneration.ViewModels
         /// <summary>
         /// represents the view's presentation state
         /// </summary>
-        public PresentationStateViewModel PresentationState
-        {
-            get { return _presentationState; }
-        }
-        private PresentationStateViewModel _presentationState;
+        public PresentationStateViewModel PresentationState { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public ObservableCollection<BindableBase> ActiveLayer
-        {
-            get { return _activeLayer; }
-        }
-        private ObservableCollection<BindableBase> _activeLayer =
-            new ObservableCollection<BindableBase>();
+        public ObservableCollection<BindableBase> ActiveLayer { get; } = new ObservableCollection<BindableBase>();
 
         /// <summary>
         /// 
         /// </summary>
-        public ObservableCollection<BindableBase> PassiveLayer
-        {
-            get { return _passiveLayer; }
-        }
-        private ObservableCollection<BindableBase> _passiveLayer =
-            new ObservableCollection<BindableBase>();
+        public ObservableCollection<BindableBase> PassiveLayer { get; } = new ObservableCollection<BindableBase>();
 
         /// <summary>
         /// 
         /// </summary>
-        public ObservableCollection<BindableBase> BackgroundLayer
-        {
-            get { return _backgroundLayer; }
-        }
-        private ObservableCollection<BindableBase> _backgroundLayer =
-            new ObservableCollection<BindableBase>();
+        public ObservableCollection<BindableBase> BackgroundLayer { get; } = new ObservableCollection<BindableBase>();
 
         /// <summary>
         /// 
@@ -141,9 +120,9 @@ namespace MprIsocurveGeneration.ViewModels
         /// 
         /// </summary>
         /// <param name="e"></param>
-        void OnShowDataEvent(ShowDataEventArgs e)
+        void OnImageDataLoadedEvent(ImageDataLoadedEventArgs e)
         {
-            _mprGuid = _repository.CreateMprImage(e.ImageVolumeGuid);
+            var mprImageModel = CreateMprImage(e.ImageVolumeGuid);
 
             // remove any MPRs vms from background layer
             BackgroundLayer.OfType<MprImageViewModel>()
@@ -152,26 +131,39 @@ namespace MprIsocurveGeneration.ViewModels
             // create a new MPR vm
             var mprImageVm = _container.Resolve<MprImageViewModel>();
             mprImageVm.SetPerformanceCounter(_backgroundLayerPerformance);
-            mprImageVm.MprGuid = _mprGuid;
+            mprImageVm.MprImageModel = mprImageModel;
             BackgroundLayer.Add(mprImageVm);
 
             // setup the isocurves
-            SetupIsocurves(10);
+            SetupIsocurves(mprImageModel, 10);
 
             // and perform the update
             UpdateAllRendered(DateTime.Now.Ticks);
         }
-    
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inputVolumeGuid"></param>
+        /// <returns></returns>
+        public MprImageModel CreateMprImage(Guid inputVolumeGuid)
+        {
+            var guid = Guid.NewGuid();
+            var mprImageModel = _container.Resolve<MprImageModel>();
+            mprImageModel.InputVolumeGuid = inputVolumeGuid;
+            mprImageModel.InputVolume = _repository.GetUniformImageVolume(inputVolumeGuid);
+            return mprImageModel;
+        }
+
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="e"></param>
-        void OnVolumeUpdateEvent(VolumeUpdateEventArgs e)
+        void OnVolumeUpdatedEvent(VolumeUpdatedEventArgs e)
         {
             UpdateAllRendered(e.TimeStamp);
         }
-
-        Guid _mprGuid = Guid.Empty;
 
         /// <summary>
         /// 
@@ -180,14 +172,14 @@ namespace MprIsocurveGeneration.ViewModels
         void OnSetIsocurveLevel(SetIsocurveLevelEventArgs e)
         {
             // set the levels and setup
-            SetupIsocurves(e.Levels);
+            SetupIsocurves(null, e.Levels);
 
             // and perform updates
             UpdateAllRendered(DateTime.Now.Ticks);
         }
 
         // creates and sets up the isocurve VM
-        private void SetupIsocurves(int nLevels)
+        private void SetupIsocurves(MprImageModel mprImageModel, int nLevels)
         {
             var isocurveVm = PassiveLayer.OfType<IsocurveViewModel>().FirstOrDefault();
             if (isocurveVm == null)
@@ -196,7 +188,7 @@ namespace MprIsocurveGeneration.ViewModels
                 PassiveLayer.Add(isocurveVm);
                 isocurveVm.SetPerformanceCounter(_passiveLayerPerformance);
             }
-            isocurveVm.PopulateIsocurveRange(_mprGuid, nLevels);
+            isocurveVm.PopulateIsocurveRange(mprImageModel, nLevels);
         }
 
         /// <summary>

@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Concurrent;
-using System.Windows.Media.Imaging;
-using System.Windows.Media;
-using System.IO;
+
+using DataLoaderModule.Models;
 
 using MprIsocurveGeneration.Models;
+
 
 namespace MprIsocurveGeneration.Services
 {

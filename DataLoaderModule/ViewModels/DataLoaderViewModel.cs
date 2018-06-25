@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -11,13 +8,12 @@ using Microsoft.Practices.Unity;
 using Prism.Mvvm;
 using Prism.Events;
 
-using MprIsocurveGeneration.Utilities;
-using MprIsocurveGeneration.Events;
-using MprIsocurveGeneration.Models;
-using MprIsocurveGeneration.Services;
+using DataLoaderModule.Interfaces;
+using DataLoaderModule.Utilities;
+using DataLoaderModule.Models;
+using DataLoaderModule.Events;
 
-
-namespace MprIsocurveGeneration.ViewModels
+namespace DataLoaderModule.ViewModels
 {
     /// <summary>
     /// DataLoader is responsible for "loading" test data to display, which is usually just generated
@@ -91,8 +87,8 @@ namespace MprIsocurveGeneration.ViewModels
                 if (!bShowData && volumeGuid.CompareTo(Guid.Empty) != 0)
                 { 
                     // now publish the load event
-                    var showDataEvent = _eventAggregator.GetEvent<ShowDataEvent>();
-                    showDataEvent.Publish(new ShowDataEventArgs()
+                    var showDataEvent = _eventAggregator.GetEvent<ImageDataLoadedEvent>();
+                    showDataEvent.Publish(new ImageDataLoadedEventArgs()
                     {
                         ImageVolumeGuid = volumeGuid,
                     });
@@ -107,8 +103,8 @@ namespace MprIsocurveGeneration.ViewModels
                     if (nUpdateCount % 30 == 0)
                     { 
                         // now publish the load event
-                        var volumeUpdateEvent = _eventAggregator.GetEvent<VolumeUpdateEvent>();
-                        volumeUpdateEvent.Publish(new VolumeUpdateEventArgs()
+                        var volumeUpdateEvent = _eventAggregator.GetEvent<VolumeUpdatedEvent>();
+                        volumeUpdateEvent.Publish(new VolumeUpdatedEventArgs()
                         {
                             TimeStamp = DateTime.Now.Ticks,
                             ImageVolumeGuid = volumeGuid,

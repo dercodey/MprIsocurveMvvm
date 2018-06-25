@@ -1,6 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
+using DataLoaderModule.Models;
 using MprIsocurveGeneration.Models;
 
 namespace MprIsocurveGeneration.Services

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MprIsocurveGeneration.Views.DataGenerateView"
+﻿<UserControl x:Class="DataLoaderModule.Views.DataLoaderView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,22 +8,13 @@
              mvvm:ViewModelLocator.AutoWireViewModel="True">
 
     <Border Style="{StaticResource SidebarControlBorder}">
-        <StackPanel>
-            
+        <StackPanel Grid.Row="0">
             <UniformGrid Rows="1" Columns="2">
-                <Button Margin="4" Command="{Binding GenerateImageVolumeCommand}">Generate</Button>
+                <Button Margin="4" Command="{Binding LoadImageVolumeCommand}">Load</Button>
                 <ProgressBar Margin="4" Value="{Binding LoadProgress}" />
-            </UniformGrid>
-            
-            <UniformGrid Rows="1" Columns="4">
-                <TextBlock TextAlignment="Right" Margin="4" Text="Dim:" />
-                <TextBox Margin="4" Text="{Binding Width}" />
-                <TextBox Margin="4" Text="{Binding Height}" />
-                <TextBox Margin="4" Text="{Binding Depth}" />
-            </UniformGrid>
-
+            </UniformGrid>                
+            <TextBox Margin="4" Text="{Binding DicomDirectory}" />
         </StackPanel>
-
     </Border>
     
 </UserControl>

@@ -1,24 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Concurrent;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Reactive;
-using System.Reactive.Linq;
-using System.Reactive.Disposables;
+using System.IO;
 
 using Dicom;
 using Dicom.Imaging;
 using Dicom.Imaging.LUT;
 using Dicom.Imaging.Render;
-using Dicom.Media;
 
-using MprIsocurveGeneration.Models;
-using System.IO;
+using DataLoaderModule.Interfaces;
+using DataLoaderModule.Models;
 
-namespace MprIsocurveGeneration.Services
+namespace DataLoaderModule.Services
 {
     /// <summary>
     /// 

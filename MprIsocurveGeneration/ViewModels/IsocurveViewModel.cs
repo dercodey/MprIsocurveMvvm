@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
@@ -13,9 +11,11 @@ using Microsoft.Practices.Unity;
 
 using Prism.Mvvm;
 
+using DataLoaderModule.Interfaces;
+
 using MprIsocurveGeneration.Utilities;
-using MprIsocurveGeneration.Models;
 using MprIsocurveGeneration.Services;
+using MprIsocurveGeneration.Models;
 
 namespace MprIsocurveGeneration.ViewModels
 {
@@ -41,7 +41,7 @@ namespace MprIsocurveGeneration.ViewModels
         /// <param name="mprGuid">the MPR guid for the isocurves</param>
         /// <param name="levels">number of levels</param>
         /// <returns>collection of new isocurve VMs</returns>
-        public void PopulateIsocurveRange(Guid mprGuid, int levels)
+        public void PopulateIsocurveRange(MprImageModel mprImageModel, int levels)
         {
             // create the new isocurve vms
             var isocurveLevels = 
@@ -52,7 +52,8 @@ namespace MprIsocurveGeneration.ViewModels
                     CurveColor = GetColorwashBrush((double)(level-1) / (double)levels)
                 };
 
-            MprImageModelGuid = mprGuid;
+            if (mprImageModel != null)
+                MprImageModel = mprImageModel;
             IsocurveLevels = new ObservableCollection<IsocurveLevel>(isocurveLevels.ToList());
         }
 
@@ -82,12 +83,12 @@ namespace MprIsocurveGeneration.ViewModels
         /// <summary>
         /// stores the GUID of the associated MPR model object
         /// </summary>
-        public Guid MprImageModelGuid
+        public MprImageModel MprImageModel
         {
-            get { return _mprGuid; }
-            set { SetProperty(ref _mprGuid, value); }
+            get { return _mprImageModel; }
+            set { SetProperty(ref _mprImageModel, value); }
         }
-        Guid _mprGuid;
+        MprImageModel _mprImageModel;
 
         /// <summary>
         /// 
@@ -119,7 +120,7 @@ namespace MprIsocurveGeneration.ViewModels
         public async Task<Action> UpdateRenderedObject(Orientation orientation, int nSliceNumber)
         {
             // get and attempt update of the MPR image
-            var mpr = _repository.GetMprImage(_mprGuid);
+            var mpr = MprImageModel;
 
             var updateTask = 
                 Task.Run<Action>(async () =>

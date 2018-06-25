@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 using Prism.Mvvm;
 using Prism.Events;
-
-using MprIsocurveGeneration.Utilities;
-using MprIsocurveGeneration.Events;
-using MprIsocurveGeneration.Models;
-using MprIsocurveGeneration.Services;
 using Microsoft.Practices.Unity;
 
+using DataLoaderModule.Interfaces;
+using DataLoaderModule.Utilities;
+using DataLoaderModule.Events;
 
-namespace MprIsocurveGeneration.ViewModels
+namespace DataLoaderModule.ViewModels
 {
     /// <summary>
     /// DataLoader is responsible for "loading" test data to display, which is usually just generated
@@ -100,8 +94,8 @@ namespace MprIsocurveGeneration.ViewModels
             }
 
             // now publish the load event
-            var loadEvent = _eventAggregator.GetEvent<ShowDataEvent>();
-            loadEvent.Publish(new ShowDataEventArgs() 
+            var loadEvent = _eventAggregator.GetEvent<ImageDataLoadedEvent>();
+            loadEvent.Publish(new ImageDataLoadedEventArgs() 
             { 
                 ImageVolumeGuid = guid,
             });

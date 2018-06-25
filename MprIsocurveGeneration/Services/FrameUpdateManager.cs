@@ -28,8 +28,16 @@ namespace MprIsocurveGeneration.Services
             {
                 while (true)
                 { 
+                    if (_cancellationToken.IsCancellationRequested)
+                    {
+                        break;
+                    }
+
                     foreach (var fum in _fums)
                     {
+                        if (Application.Current == null)
+                            break;
+
                         Application.Current.Dispatcher.Invoke(() => fum.ProcessQueue());
                         Thread.Sleep(10);
                     }

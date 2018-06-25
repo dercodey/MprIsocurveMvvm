@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using MprIsocurveGeneration.Models;
+using DataLoaderModule.Models;
+using DataLoaderModule.Services;
 
-namespace MprIsocurveGeneration.Services
+namespace DataLoaderModule.Interfaces
 {
     /// <summary>
     /// 

@@ -21,16 +21,14 @@ namespace MprIsocurveGeneration.ViewModels
     public class IsocurveControlViewModel : BindableBase
     {
         IEventAggregator _eventAggregator;
-        IModelRepository _repository;
 
         /// <summary>
         /// constructor via container will pass the event aggregator
         /// </summary>
         /// <param name="eventAggregator"></param>
-        public IsocurveControlViewModel(IEventAggregator eventAggregator, IModelRepository repository)
+        public IsocurveControlViewModel(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
-            _repository = repository;
         }
 
         /// <summary>

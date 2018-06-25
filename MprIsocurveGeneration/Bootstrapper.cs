@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 
 using Prism.Unity;
 using Prism.Modularity;
@@ -27,8 +22,16 @@ namespace MprIsocurveGeneration
         protected override void ConfigureModuleCatalog()
         {
             base.ConfigureModuleCatalog();
-            var moduleInfo = new ModuleInfo("Module", typeof(Module).AssemblyQualifiedName);
-            this.ModuleCatalog.AddModule(moduleInfo);
+
+            var dataLoaderModuleInfo = 
+                new ModuleInfo("DataLoaderModule.Module", 
+                    typeof(DataLoaderModule.Module).AssemblyQualifiedName);
+            ModuleCatalog.AddModule(dataLoaderModuleInfo);
+
+            var mprIsocurveGenerationModuleInfo = 
+                new ModuleInfo("MprIsocurveGeneration.Module", 
+                    typeof(MprIsocurveGeneration.Module).AssemblyQualifiedName);
+            ModuleCatalog.AddModule(mprIsocurveGenerationModuleInfo);
         }
     }
 }

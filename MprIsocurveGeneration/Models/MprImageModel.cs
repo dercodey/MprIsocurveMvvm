@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Concurrent;
 
 using MprIsocurveGeneration.Services;
+using DataLoaderModule.Models;
 
 namespace MprIsocurveGeneration.Models
 {
@@ -59,20 +56,12 @@ namespace MprIsocurveGeneration.Models
         /// <summary>
         /// 
         /// </summary>
-        public Guid InputVolumeGuid
-        {
-            get;
-            set;
-        }
+        public Guid InputVolumeGuid { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        internal UniformImageVolumeModel InputVolume
-        {
-            get;
-            set;
-        }
+        internal UniformImageVolumeModel InputVolume { get; set; }
 
         /// <summary>
         /// 
@@ -87,20 +76,12 @@ namespace MprIsocurveGeneration.Models
         /// <summary>
         /// 
         /// </summary>
-        public Orientation MprOrientation
-        {
-            get;
-            set;
-        }
+        public Orientation MprOrientation { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int SlicePosition
-        {
-            get;
-            set;
-        }
+        public int SlicePosition { get; set; }
 
         /// <summary>
         /// 

@@ -71,7 +71,7 @@ namespace MprIsocurveGeneration.ViewModels
         internal void SetNavigationPointNoEvent(Point3D value)
         {
             SetProperty(ref _navigationPoint, value);
-            OnPropertyChanged(() => this.NavigationPointOnPlane);
+            RaisePropertyChanged(nameof(NavigationPointOnPlane));
         }
 
         /// <summary>

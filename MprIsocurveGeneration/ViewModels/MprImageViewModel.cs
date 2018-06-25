@@ -13,9 +13,12 @@ using Prism.Mvvm;
 
 using AutoMapper;
 
+using DataLoaderModule.Interfaces;
+
 using MprIsocurveGeneration.Utilities;
 using MprIsocurveGeneration.Services;
 using MprIsocurveGeneration.Models;
+using DataLoaderModule.Models;
 
 namespace MprIsocurveGeneration.ViewModels
 {
@@ -36,12 +39,12 @@ namespace MprIsocurveGeneration.ViewModels
         /// <summary>
         /// 
         /// </summary>
-        public Guid MprGuid
-        {
-            get { return _mprGuid; }
-            set { _mprGuid = value; }
-        }
-        Guid _mprGuid;
+        public MprImageModel MprImageModel { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Guid MprGuid { get; set; }
 
         /// <summary>
         /// 
@@ -82,7 +85,7 @@ namespace MprIsocurveGeneration.ViewModels
         /// <param name="uiResponseAction"></param>
         public async Task<Action> UpdateRenderedObject(Orientation orientation, int nSliceNumber)
         {
-            var mpr = _repository.GetMprImage(_mprGuid);
+            var mpr = this.MprImageModel;
             var mprOrientation = Mapper.Map<Orientation, MprImageModel.Orientation>(orientation);
             var bUpdated = MprImageModel.CheckAndUpdate(ref mpr, mprOrientation, nSliceNumber);
             if (bUpdated)
