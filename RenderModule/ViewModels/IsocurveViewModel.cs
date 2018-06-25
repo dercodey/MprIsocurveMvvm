@@ -42,7 +42,7 @@ namespace RenderModule.ViewModels
         /// <param name="mprGuid">the MPR guid for the isocurves</param>
         /// <param name="levels">number of levels</param>
         /// <returns>collection of new isocurve VMs</returns>
-        public void PopulateIsocurveRange(MprImageModel mprImageModel, int levels)
+        public void PopulateIsocurveRange(int levels)
         {
             // create the new isocurve vms
             var isocurveLevels = 
@@ -53,8 +53,6 @@ namespace RenderModule.ViewModels
                     CurveColor = GetColorwashBrush((double)(level-1) / (double)levels)
                 };
 
-            if (mprImageModel != null)
-                MprImageModel = mprImageModel;
             IsocurveLevels = new ObservableCollection<IsocurveLevel>(isocurveLevels.ToList());
         }
 

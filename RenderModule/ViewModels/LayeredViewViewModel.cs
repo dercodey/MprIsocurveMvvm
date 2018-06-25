@@ -19,7 +19,6 @@ using Infrastructure.Interfaces;
 
 using RenderModule.Interfaces;
 using RenderModule.Models;
-using RenderModule.ViewModels;
 
 namespace RenderModule.ViewModels
 {
@@ -137,9 +136,18 @@ namespace RenderModule.ViewModels
             mprImageVm.MprImageModel = mprImageModel;
             BackgroundLayer.Add(mprImageVm);
 
-            // setup the isocurves
-            SetupIsocurves(mprImageModel, 10);
+            // remove any isocurve vms from background layer
+            PassiveLayer.OfType<IsocurveViewModel>()
+                .ToList().ForEach(vm => PassiveLayer.Remove(vm));
 
+            // setup the isocurves
+            var isocurveVm = _container.Resolve<IsocurveViewModel>();
+            isocurveVm.SetPerformanceCounter(_passiveLayerPerformance);
+            isocurveVm.MprImageModel = mprImageModel;
+            PassiveLayer.Add(isocurveVm);
+
+            isocurveVm.PopulateIsocurveRange(10);
+            
             // and perform the update
             UpdateAllRendered(DateTime.Now.Ticks);
         }
@@ -151,7 +159,6 @@ namespace RenderModule.ViewModels
         /// <returns></returns>
         public MprImageModel CreateMprImage(Guid inputVolumeGuid)
         {
-            var guid = Guid.NewGuid();
             var mprImageModel = _container.Resolve<MprImageModel>();
             mprImageModel.InputVolumeGuid = inputVolumeGuid;
             mprImageModel.InputVolume = _repository.GetUniformImageVolume(inputVolumeGuid);
@@ -175,23 +182,11 @@ namespace RenderModule.ViewModels
         void OnSetIsocurveLevel(SetIsocurveLevelEventArgs e)
         {
             // set the levels and setup
-            SetupIsocurves(null, e.Levels);
+            var isocurveVm = PassiveLayer.OfType<IsocurveViewModel>().FirstOrDefault();
+            isocurveVm.PopulateIsocurveRange(e.Levels);
 
             // and perform updates
             UpdateAllRendered(DateTime.Now.Ticks);
-        }
-
-        // creates and sets up the isocurve VM
-        private void SetupIsocurves(MprImageModel mprImageModel, int nLevels)
-        {
-            var isocurveVm = PassiveLayer.OfType<IsocurveViewModel>().FirstOrDefault();
-            if (isocurveVm == null)
-            {
-                isocurveVm = _container.Resolve<IsocurveViewModel>();
-                PassiveLayer.Add(isocurveVm);
-                isocurveVm.SetPerformanceCounter(_passiveLayerPerformance);
-            }
-            isocurveVm.PopulateIsocurveRange(mprImageModel, nLevels);
         }
 
         /// <summary>
