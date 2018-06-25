@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Collections.Concurrent;
 using System.Threading;
@@ -10,7 +7,7 @@ using System.Windows.Threading;
 
 using Prism.Mvvm;
 
-namespace MprIsocurveGeneration.Utilities
+namespace Infrastructure.Utilities
 {
     /// <summary>
     /// 

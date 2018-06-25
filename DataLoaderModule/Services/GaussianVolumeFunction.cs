@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using Infrastructure.Interfaces;
+
 using DataLoaderModule.Interfaces;
-using DataLoaderModule.Models;
 
 namespace DataLoaderModule.Services
 {
@@ -19,7 +20,7 @@ namespace DataLoaderModule.Services
         /// <param name="depth"></param>
         /// <returns>status enumerable that can be "pulled" to generate the volume</returns>
         public IEnumerable<CreateUniformImageVolumeStatus> 
-            PopulateGaussian(UniformImageVolumeModel imageVolume)
+            PopulateGaussian(IUniformImageVolumeModel imageVolume)
         {
             int depth = imageVolume.Voxels.GetLength(0);
             int height = imageVolume.Voxels.GetLength(1);

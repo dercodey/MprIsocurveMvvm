@@ -2,9 +2,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-using MprIsocurveGeneration.Utilities;
+using Infrastructure.Utilities;
 
-namespace MprIsocurveGeneration.Services
+namespace RenderModule.Interfaces
 {
     /// <summary>
     /// 

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-using MprIsocurveGeneration.Models;
+using RenderModule.Models;
 
-namespace MprIsocurveGeneration.Services
+namespace RenderModule.Interfaces
 {
     /// <summary>
     /// 

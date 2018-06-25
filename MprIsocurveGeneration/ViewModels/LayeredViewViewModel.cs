@@ -14,10 +14,11 @@ using Prism.Mvvm;
 using DataLoaderModule.Interfaces;
 using DataLoaderModule.Events;
 
-using MprIsocurveGeneration.Utilities;
-using MprIsocurveGeneration.Models;
+using RenderModule.Interfaces;
+using RenderModule.Models;
+
 using MprIsocurveGeneration.Events;
-using MprIsocurveGeneration.Services;
+using Infrastructure.Utilities;
 
 namespace MprIsocurveGeneration.ViewModels
 {

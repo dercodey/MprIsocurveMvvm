@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-using MprIsocurveGeneration.Services;
-using DataLoaderModule.Models;
+using Infrastructure.Interfaces;
 
-namespace MprIsocurveGeneration.Models
+using RenderModule.Interfaces;
+
+namespace RenderModule.Models
 {
     /// <summary>
     /// 
@@ -61,7 +62,7 @@ namespace MprIsocurveGeneration.Models
         /// <summary>
         /// 
         /// </summary>
-        internal UniformImageVolumeModel InputVolume { get; set; }
+        public IUniformImageVolumeModel InputVolume { get; set; }
 
         /// <summary>
         /// 

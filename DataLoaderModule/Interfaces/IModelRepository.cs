@@ -1,6 +1,6 @@
 ﻿using System;
 
-using DataLoaderModule.Models;
+using Infrastructure.Interfaces;
 
 namespace DataLoaderModule.Interfaces
 {
@@ -23,6 +23,6 @@ namespace DataLoaderModule.Interfaces
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
-        UniformImageVolumeModel GetUniformImageVolume(Guid guid);
+        IUniformImageVolumeModel GetUniformImageVolume(Guid guid);
     }
 }

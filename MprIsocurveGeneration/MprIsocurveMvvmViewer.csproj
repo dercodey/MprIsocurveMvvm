@@ -102,26 +102,17 @@
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Events\DragBehavior.cs" />
-    <Compile Include="Models\ComplexGeometry.cs" />
-    <Compile Include="Contracts\IIsocurveFunction.cs" />
-    <Compile Include="Contracts\IMprGenerationFunction.cs" />
-    <Compile Include="Contracts\IFrameUpdateManager.cs" />
     <Compile Include="ViewModels\IsocurveControlViewModel.cs" />
     <Compile Include="Utilities\IsocurveLevel.cs" />
-    <Compile Include="Utilities\PerformanceCounter.cs" />
     <Compile Include="Events\SetIsocurveLevelEvent.cs" />
     <Compile Include="Events\NavigationPointUpdateEvent.cs" />
-    <Compile Include="Models\MprImageModel.cs" />
     <Compile Include="Module.cs" />
-    <Compile Include="Services\IsocurveFunction.cs" />
-    <Compile Include="Services\MprGenerationFunction.cs" />
     <Compile Include="ViewModels\IsocurveViewModel.cs" />
     <Compile Include="ViewModels\IRenderedObjectViewModel.cs" />
     <Compile Include="ViewModels\LayeredViewViewModel.cs" />
     <Compile Include="ViewModels\MprImageViewModel.cs" />
     <Compile Include="ViewModels\PresentationStateViewModel.cs" />
     <Compile Include="Utilities\RelayCommand.cs" />
-    <Compile Include="Services\FrameUpdateManager.cs" />
     <Compile Include="Views\IsocurveControlView.xaml.cs">
       <DependentUpon>IsocurveControlView.xaml</DependentUpon>
     </Compile>
@@ -218,6 +209,17 @@
       <Project>{0df35ab2-800a-4148-8052-7723b9f348a1}</Project>
       <Name>DataLoaderModule</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{4D934733-E2BA-4CE3-90AE-D41321420BF9}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RenderModule\RenderModule.csproj">
+      <Project>{e04209a3-2e38-4df9-846c-99c86d8a5b5f}</Project>
+      <Name>RenderModule</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

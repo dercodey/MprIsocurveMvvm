@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 
-using DataLoaderModule.Models;
-using MprIsocurveGeneration.Models;
+using Infrastructure.Interfaces;
+using RenderModule.Models;
 
-namespace MprIsocurveGeneration.Services
+namespace RenderModule.Interfaces
 {
     /// <summary>
     /// 
@@ -17,7 +17,7 @@ namespace MprIsocurveGeneration.Services
         /// <param name="outImage"></param>
         /// <returns></returns>
         Task<byte[,]> 
-            GenerateMprAsync(UniformImageVolumeModel inputVolume, 
+            GenerateMprAsync(IUniformImageVolumeModel inputVolume, 
                 MprImageModel outImage);
     }
 }

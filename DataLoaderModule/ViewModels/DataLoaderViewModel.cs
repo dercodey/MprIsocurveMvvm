@@ -8,9 +8,9 @@ using Microsoft.Practices.Unity;
 using Prism.Mvvm;
 using Prism.Events;
 
+using Infrastructure.Interfaces;
 using DataLoaderModule.Interfaces;
 using DataLoaderModule.Utilities;
-using DataLoaderModule.Models;
 using DataLoaderModule.Events;
 
 namespace DataLoaderModule.ViewModels
@@ -71,7 +71,7 @@ namespace DataLoaderModule.ViewModels
             var loader = _container.Resolve<IDicomImageVolumeLoadService>();
 
             Guid volumeGuid = Guid.Empty;
-            Func<int, int, int, UniformImageVolumeModel> allocator =
+            Func<int, int, int, IUniformImageVolumeModel> allocator =
                 (width, height, depth) =>
                 {
                     volumeGuid = _repository.CreateUniformImageVolume(width, height, depth);

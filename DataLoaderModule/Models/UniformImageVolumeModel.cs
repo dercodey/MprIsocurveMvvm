@@ -1,27 +1,23 @@
-﻿namespace DataLoaderModule.Models
+﻿using Infrastructure.Interfaces;
+
+namespace DataLoaderModule.Models
 {
     /// <summary>
     /// 
     /// </summary>
-    public class UniformImageVolumeModel    
+    public class UniformImageVolumeModel : IUniformImageVolumeModel
     {
-        public int SlicesCompleted = 0;
-
         /// <summary>
         /// 
         /// </summary>
-        public byte[, ,] Voxels
-        {
-            get;
-            set;
-        }
+        public byte[, ,] Voxels { get; set;}
 
         /// <summary>
         /// 
         /// </summary>
         public int Depth
         {
-            get { return Voxels.GetLength(0); }
+            get => Voxels.GetLength(0);
         }
 
         /// <summary>
@@ -29,7 +25,7 @@
         /// </summary>
         public int Height
         {
-            get { return Voxels.GetLength(1); }
+            get => Voxels.GetLength(1);
         }
 
         /// <summary>
@@ -37,7 +33,12 @@
         /// </summary>
         public int Width
         {
-            get { return Voxels.GetLength(2); }
+            get => Voxels.GetLength(2);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int SlicesCompleted { get; set; }
     }
 }

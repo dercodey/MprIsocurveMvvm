@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using DataLoaderModule.Models;
+using Infrastructure.Interfaces;
 
 namespace DataLoaderModule.Interfaces
 {
@@ -26,6 +26,6 @@ namespace DataLoaderModule.Interfaces
         /// <param name="imageVolume"></param>
         /// <returns></returns>
         IEnumerable<CreateUniformImageVolumeStatus> 
-            PopulateGaussian(UniformImageVolumeModel imageVolume);
+            PopulateGaussian(IUniformImageVolumeModel imageVolume);
     }
 }

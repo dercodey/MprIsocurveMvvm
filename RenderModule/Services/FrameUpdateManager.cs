@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
-using Prism.Mvvm;
-
-using MprIsocurveGeneration.Utilities;
 using System.Windows;
 
-namespace MprIsocurveGeneration.Services
+using Infrastructure.Utilities;
+
+using RenderModule.Interfaces;
+
+namespace RenderModule.Services
 {
     /// <summary>
     /// handles batched frame updates, based on a time stamp for each frame

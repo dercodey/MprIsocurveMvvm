@@ -5,6 +5,9 @@ using Prism.Modularity;
 using Prism.Regions;
 using Prism.Events;
 
+using RenderModule.Interfaces;
+using RenderModule.Services;
+
 using MprIsocurveGeneration.Views;
 using MprIsocurveGeneration.Services;
 

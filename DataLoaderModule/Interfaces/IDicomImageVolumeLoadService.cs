@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using DataLoaderModule.Models;
+using Infrastructure.Interfaces;
+
 using DataLoaderModule.Services;
 
 namespace DataLoaderModule.Interfaces
@@ -19,6 +20,6 @@ namespace DataLoaderModule.Interfaces
         /// <returns></returns>
         IEnumerable<DicomImageVolumeLoadStatus> 
             LoadUniformImageVolumeFromDicom(string directory, 
-                Func<int, int, int, UniformImageVolumeModel> allocator);
+                Func<int, int, int, IUniformImageVolumeModel> allocator);
     }
 }

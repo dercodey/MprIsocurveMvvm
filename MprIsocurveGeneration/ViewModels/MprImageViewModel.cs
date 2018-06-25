@@ -1,24 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows;
 
 using Prism.Mvvm;
 
 using AutoMapper;
 
+using Infrastructure.Utilities;
+
 using DataLoaderModule.Interfaces;
 
-using MprIsocurveGeneration.Utilities;
-using MprIsocurveGeneration.Services;
-using MprIsocurveGeneration.Models;
-using DataLoaderModule.Models;
+using RenderModule.Models;
 
 namespace MprIsocurveGeneration.ViewModels
 {

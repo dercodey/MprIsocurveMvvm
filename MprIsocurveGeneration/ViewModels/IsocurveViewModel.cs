@@ -11,11 +11,14 @@ using Microsoft.Practices.Unity;
 
 using Prism.Mvvm;
 
+using Infrastructure.Utilities;
+
 using DataLoaderModule.Interfaces;
 
+using RenderModule.Models;
+using RenderModule.Interfaces;
+
 using MprIsocurveGeneration.Utilities;
-using MprIsocurveGeneration.Services;
-using MprIsocurveGeneration.Models;
 
 namespace MprIsocurveGeneration.ViewModels
 {

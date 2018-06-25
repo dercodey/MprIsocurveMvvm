@@ -1,22 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows.Media;
-using System.Windows;
 
 using Prism.Mvvm;
 
-using MprIsocurveGeneration.Models;
-using MprIsocurveGeneration.ViewModels;
-using MprIsocurveGeneration.Services;
+using RenderModule.Models;
 
 namespace MprIsocurveGeneration.Utilities
 {
-    using Orientation = PresentationStateViewModel.Orientation;
-
     /// <summary>
     /// Generates and update isocurves bindable to the Geometry path
     /// </summary>

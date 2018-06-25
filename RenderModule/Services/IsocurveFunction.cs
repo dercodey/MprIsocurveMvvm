@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
+﻿using System.Threading.Tasks;
 using System.Windows;
 
-using MprIsocurveGeneration.Models;
+using RenderModule.Interfaces;
+using RenderModule.Models;
 
 namespace MprIsocurveGeneration.Services
 {

@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 
 using Microsoft.Practices.Unity;
 
+using Infrastructure.Interfaces;
 using DataLoaderModule.Interfaces;
 using DataLoaderModule.Models;
 
@@ -50,7 +51,7 @@ namespace DataLoaderModule.Services
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
-        public UniformImageVolumeModel GetUniformImageVolume(Guid guid)
+        public IUniformImageVolumeModel GetUniformImageVolume(Guid guid)
         {
             return _imageVolumes[guid];
         }

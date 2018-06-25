@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-using DataLoaderModule.Models;
+using Infrastructure.Interfaces;
 
-using MprIsocurveGeneration.Models;
-
+using RenderModule.Interfaces;
+using RenderModule.Models;
 
 namespace MprIsocurveGeneration.Services
 {
@@ -22,7 +22,7 @@ namespace MprIsocurveGeneration.Services
         /// <param name="outImage"></param>
         /// <returns>task with byte array future</returns>
         public async Task<byte[,]> 
-            GenerateMprAsync(UniformImageVolumeModel inputVolume, MprImageModel outImage)
+            GenerateMprAsync(IUniformImageVolumeModel inputVolume, MprImageModel outImage)
         {
             int width, height;
             CalculateSize(inputVolume, outImage.MprOrientation, out width, out height);
@@ -48,7 +48,7 @@ namespace MprIsocurveGeneration.Services
         /// <param name="orientation"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        static void CalculateSize(UniformImageVolumeModel uiv, MprImageModel.Orientation orientation, 
+        static void CalculateSize(IUniformImageVolumeModel uiv, MprImageModel.Orientation orientation, 
             out int width, out int height)
         {
             width = 0;
@@ -86,7 +86,7 @@ namespace MprIsocurveGeneration.Services
         /// <param name="orientation"></param>
         /// <param name="slice"></param>
         /// <param name="pixels"></param>
-        static void UpdatePixelsFromVolume(UniformImageVolumeModel uiv,
+        static void UpdatePixelsFromVolume(IUniformImageVolumeModel uiv,
             MprImageModel.Orientation orientation, int slice, ref byte[,] pixels)
         {
             // create a log to debug output

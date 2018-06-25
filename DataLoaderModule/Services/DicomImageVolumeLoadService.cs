@@ -10,6 +10,7 @@ using Dicom.Imaging;
 using Dicom.Imaging.LUT;
 using Dicom.Imaging.Render;
 
+using Infrastructure.Interfaces;
 using DataLoaderModule.Interfaces;
 using DataLoaderModule.Models;
 
@@ -27,7 +28,7 @@ namespace DataLoaderModule.Services
         /// <returns></returns>
         public IEnumerable<DicomImageVolumeLoadStatus> 
             LoadUniformImageVolumeFromDicom(string directory, 
-                Func<int, int, int, UniformImageVolumeModel> allocator)
+                Func<int, int, int, IUniformImageVolumeModel> allocator)
         {
             var dcmFileNames = Directory.EnumerateFiles(directory, "*.dcm").ToList();
             var dcmFiles = from name in dcmFileNames select DicomFile.Open(name, Encoding.Default);
@@ -131,6 +132,6 @@ namespace DataLoaderModule.Services
     {
         public int Progress;
         public bool Done;
-        public UniformImageVolumeModel ImageVolume;
+        public IUniformImageVolumeModel ImageVolume;
     }
 }

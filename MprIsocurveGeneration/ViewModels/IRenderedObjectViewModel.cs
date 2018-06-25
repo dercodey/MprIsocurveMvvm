@@ -5,8 +5,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-using MprIsocurveGeneration.Models;
-
 namespace MprIsocurveGeneration.ViewModels
 {
     using Orientation = PresentationStateViewModel.Orientation;
