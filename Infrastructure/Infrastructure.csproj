@@ -61,7 +61,6 @@
     <Compile Include="Interfaces\IModelRepository.cs" />
     <Compile Include="Interfaces\IUniformImageVolumeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\PerformanceCounter.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
