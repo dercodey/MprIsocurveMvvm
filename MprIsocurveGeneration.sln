@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenderModule", "RenderModul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{4D934733-E2BA-4CE3-90AE-D41321420BF9}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FsRenderModule", "FsRenderModule\FsRenderModule.fsproj", "{3F929FD7-719B-4351-84AB-272B535498EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{4D934733-E2BA-4CE3-90AE-D41321420BF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D934733-E2BA-4CE3-90AE-D41321420BF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D934733-E2BA-4CE3-90AE-D41321420BF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F929FD7-719B-4351-84AB-272B535498EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F929FD7-719B-4351-84AB-272B535498EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F929FD7-719B-4351-84AB-272B535498EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F929FD7-719B-4351-84AB-272B535498EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
