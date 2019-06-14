@@ -9,6 +9,7 @@ using RenderModule.Interfaces;
 using FsRenderModule.Interfaces;
 using RenderModule.Models;
 using RenderModule.Services;
+using FsRenderModule.Services;
 using RenderModule.ViewModels;
 using RenderModule.Views;
 
