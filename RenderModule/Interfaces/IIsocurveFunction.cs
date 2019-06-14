@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-
+using FsRenderModule.Interfaces;
 using RenderModule.Models;
 
 namespace RenderModule.Interfaces
@@ -17,6 +17,6 @@ namespace RenderModule.Interfaces
         /// <param name="threshold"></param>
         /// <returns></returns>
         Task<ComplexGeometry> 
-            GenerateIsocurveAsync(MprImageModel fromImage, float threshold);
+            GenerateIsocurveAsync(MprImageModelBase fromImage, float threshold);
     }
 }

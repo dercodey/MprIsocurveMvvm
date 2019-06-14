@@ -30,7 +30,7 @@ namespace RenderModule.ViewModels
         /// <summary>
         /// 
         /// </summary>
-        public MprImageModel MprImageModel { get; set; }
+        public MprImageModelBase MprImageModel { get; set; }
 
         /// <summary>
         /// 
@@ -78,7 +78,7 @@ namespace RenderModule.ViewModels
         {
             var mpr = this.MprImageModel;
             var mprOrientation = Mapper.Map<Orientation, Orientation>(orientation);
-            var bUpdated = MprImageModel.CheckAndUpdate(ref mpr, mprOrientation, nSliceNumber);
+            var bUpdated = mpr.CheckAndUpdate(mprOrientation, nSliceNumber);
             if (bUpdated)
             {
                 _counter.StartEvent();
@@ -93,7 +93,7 @@ namespace RenderModule.ViewModels
         }
 
         // 
-        private void UpdateImageSource(MprImageModel mpr, byte[,] pixels)
+        private void UpdateImageSource(MprImageModelBase mpr, byte[,] pixels)
         {
             int height = pixels.GetLength(0);
             int width = pixels.GetLength(1);

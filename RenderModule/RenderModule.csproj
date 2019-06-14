@@ -83,7 +83,6 @@
     <Compile Include="Interfaces\IIsocurveFunction.cs" />
     <Compile Include="Models\ComplexGeometry.cs" />
     <Compile Include="Models\IsocurveLevel.cs" />
-    <Compile Include="Models\MprImageModel.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FrameUpdateManager.cs" />

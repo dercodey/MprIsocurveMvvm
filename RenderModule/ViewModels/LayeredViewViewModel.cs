@@ -158,9 +158,9 @@ namespace RenderModule.ViewModels
         /// </summary>
         /// <param name="inputVolumeGuid"></param>
         /// <returns></returns>
-        public MprImageModel CreateMprImage(Guid inputVolumeGuid)
+        public MprImageModelBase CreateMprImage(Guid inputVolumeGuid)
         {
-            var mprImageModel = _container.Resolve<MprImageModel>();
+            var mprImageModel = _container.Resolve<MprImageModelBase>();
             mprImageModel.InputVolumeGuid = inputVolumeGuid;
             mprImageModel.InputVolume = _repository.GetUniformImageVolume(inputVolumeGuid);
             return mprImageModel;

@@ -80,12 +80,12 @@ namespace RenderModule.ViewModels
         /// <summary>
         /// stores the GUID of the associated MPR model object
         /// </summary>
-        public MprImageModel MprImageModel
+        public MprImageModelBase MprImageModel
         {
             get { return _mprImageModel; }
             set { SetProperty(ref _mprImageModel, value); }
         }
-        MprImageModel _mprImageModel;
+        MprImageModelBase _mprImageModel;
 
         /// <summary>
         /// 
