@@ -8,6 +8,7 @@ using RenderModule.Models;
 
 namespace RenderModule.Services
 {
+#if USE_CS_MPRGEN
     /// <summary>
     /// 
     /// </summary>
@@ -146,4 +147,5 @@ namespace RenderModule.Services
             }
         }
     }
+#endif
 }
