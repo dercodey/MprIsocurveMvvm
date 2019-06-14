@@ -22,7 +22,7 @@ namespace RenderModule.Services
         /// <param name="outImage"></param>
         /// <returns>task with byte array future</returns>
         public async Task<byte[,]> 
-            GenerateMprAsync(IUniformImageVolumeModel inputVolume, MprImageModelBase outImage)
+            GenerateMprAsync(IUniformImageVolumeModel inputVolume, MprImageModelBase outImage, int nSlicePosition)
         {
             int width, height;
             CalculateSize(inputVolume, outImage.MprOrientation, out width, out height);
