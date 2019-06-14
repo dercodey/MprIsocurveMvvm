@@ -12,6 +12,7 @@ namespace RenderModule.Services
     using LineSegments = List<Point>;
     using ComplexGeometry = List<List<Point>>;
 
+#if USE_ISOCURVE_CS
     /// <summary>
     /// 
     /// </summary>
@@ -229,4 +230,5 @@ namespace RenderModule.Services
             }
         }
     }
+#endif
 }

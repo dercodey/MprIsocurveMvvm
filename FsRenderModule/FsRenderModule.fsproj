@@ -45,6 +45,7 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="RenderModule.Interfaces.fs" />
     <Compile Include="MprGeneration.fs" />
+    <Compile Include="IsocurveGeneration.fs" />
     <Compile Include="Module.fs" />
     <Content Include="packages.config" />
   </ItemGroup>

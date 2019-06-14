@@ -1,8 +1,8 @@
 ﻿namespace FsRenderModule.Services
 
 open System
-open FsRenderModule.Interfaces
 open Infrastructure.Interfaces
+open FsRenderModule.Interfaces
 
 type MprGenerationFunction() =
 
