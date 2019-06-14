@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using FsRenderModule.Interfaces;
 using RenderModule.Interfaces;
@@ -21,7 +23,13 @@ namespace RenderModule.Services
             GenerateIsocurveAsync(MprImageModelBase fromImage, float threshold)
         {
             var geometry = new ComplexGeometry();
+
+            // stores the dictionary of segments
+            var segments =
+                new Dictionary<Point, LineSegments>();
+
             var pixels = await fromImage.GetPixelsAsync();
+
             if (pixels == null)
                 return geometry;
 
@@ -68,7 +76,7 @@ namespace RenderModule.Services
                                 // LL---LR
                                 case 0x1:  // 0001
                                 case 0xE:  // 1110
-                                    geometry.CreateOrAddSegment(x, y,
+                                    CreateOrAddSegment(geometry, segments, x, y,
                                         new Vector(-0.5, 0.0),
                                         new Vector(0.0, 0.5));
                                     break;
@@ -79,8 +87,8 @@ namespace RenderModule.Services
                                 // LL---LR
                                 case 0x2:  // 0010
                                 case 0xD:  // 1101
-                                    geometry.CreateOrAddSegment(x, y,
-                                       new Vector(0.0, 0.5),
+                                    CreateOrAddSegment(geometry, segments, x, y,
+                                        new Vector(0.0, 0.5),
                                         new Vector(0.5, 0.0));
                                     break;
 
@@ -90,7 +98,7 @@ namespace RenderModule.Services
                                 // LL---LR
                                 case 0x3:  // 0011
                                 case 0xC:  // 1100
-                                    geometry.CreateOrAddSegment(x, y,
+                                    CreateOrAddSegment(geometry, segments, x, y,
                                        new Vector(-0.5, 0.0),
                                        new Vector(0.5, 0.0));
                                     break;
@@ -101,7 +109,7 @@ namespace RenderModule.Services
                                 // LL---LR
                                 case 0x4:   // 0100
                                 case 0xB:   // 1011
-                                    geometry.CreateOrAddSegment(x, y,
+                                    CreateOrAddSegment(geometry, segments, x, y,
                                         new Vector(0.0, -0.5),
                                         new Vector(0.5, 0.0));
                                     break;
@@ -112,11 +120,11 @@ namespace RenderModule.Services
                                 // LL---LR
                                 case 0x5:   // 0101
                                 case 0xA:   // 1010
-                                    geometry.CreateOrAddSegment(x, y,
+                                    CreateOrAddSegment(geometry, segments, x, y,
                                         new Vector(0.0, -0.5),
                                         new Vector(0.5, 0.0));
 
-                                    geometry.CreateOrAddSegment(x, y,
+                                    CreateOrAddSegment(geometry, segments, x, y,
                                         new Vector(-0.5, 0.0),
                                         new Vector(0.0, 0.5));
                                     break;
@@ -127,7 +135,7 @@ namespace RenderModule.Services
                                 // LL---LR
                                 case 0x6:   // 0110
                                 case 0x9:   // 1001
-                                    geometry.CreateOrAddSegment(x, y,
+                                    CreateOrAddSegment(geometry, segments, x, y,
                                         new Vector(0.0, -0.5),
                                         new Vector(0.0, 0.5));
                                     break;
@@ -138,7 +146,7 @@ namespace RenderModule.Services
                                 // LL---LR
                                 case 0x7:
                                 case 0x8:
-                                    geometry.CreateOrAddSegment(x, y,
+                                    CreateOrAddSegment(geometry, segments, x, y,
                                         new Vector(-0.5, 0.0),
                                         new Vector(0.0, -0.5));
                                     break;
@@ -154,8 +162,68 @@ namespace RenderModule.Services
                     }
                 });
 
-
             return geometry;
+        }
+
+        /// <summary>
+        /// creates or adds a segment to the collections
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="startOffset"></param>
+        /// <param name="endOffset"></param>
+        public void CreateOrAddSegment(ComplexGeometry geometry,
+            Dictionary<Point, LineSegments> segments, 
+            int x, int y, Vector startOffset, Vector endOffset)
+        {
+            Point ptMiddle = new Point(x, y);
+            Point startPoint = ptMiddle + startOffset;
+            Point endPoint = ptMiddle + endOffset;
+
+            if (segments.ContainsKey(startPoint))
+            {
+                var pc = segments[startPoint];
+                segments.Remove(startPoint);
+
+                if (pc.First() == startPoint)
+                {
+                    pc.Insert(0, endPoint);
+                }
+                else if (pc.Last() == startPoint)
+                {
+                    pc.Add(endPoint);
+                }
+
+                if (!segments.ContainsKey(endPoint))
+                    segments.Add(endPoint, pc);
+            }
+            else if (segments.ContainsKey(endPoint))
+            {
+                var pc = segments[endPoint];
+                segments.Remove(endPoint);
+
+                if (pc.First() == endPoint)
+                {
+                    pc.Insert(0, startPoint);
+                }
+                else if (pc.Last() == endPoint)
+                {
+                    pc.Add(startPoint);
+                }
+
+                if (!segments.ContainsKey(startPoint))
+                    segments.Add(startPoint, pc);
+            }
+            else
+            {
+                var pc = new LineSegments();
+                pc.Add(startPoint);
+                pc.Add(endPoint);
+                segments.Add(startPoint, pc);
+                segments.Add(endPoint, pc);
+
+                geometry.Add(pc);
+            }
         }
     }
 }

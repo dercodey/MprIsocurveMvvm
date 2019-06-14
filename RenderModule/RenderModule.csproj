@@ -87,7 +87,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FrameUpdateManager.cs" />
     <Compile Include="Services\IsocurveFunction.cs" />
-    <Compile Include="Services\MprGenerationFunction.cs" />
     <Compile Include="Utilities\PerformanceCounter.cs" />
     <Compile Include="ViewModels\IsocurveViewModel.cs" />
     <Compile Include="ViewModels\LayeredViewViewModel.cs" />
