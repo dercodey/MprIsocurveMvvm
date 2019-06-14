@@ -22,6 +22,9 @@ namespace RenderModule.Services
         {
             var geometry = new ComplexGeometry();
             var pixels = await fromImage.GetPixelsAsync();
+            if (pixels == null)
+                return geometry;
+
             int height = pixels.GetLength(0);
             int width = pixels.GetLength(1);
 

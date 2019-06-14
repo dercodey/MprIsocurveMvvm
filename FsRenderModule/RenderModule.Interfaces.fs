@@ -37,7 +37,7 @@ type MprGenerationFunction() =
         | Orientation.Coronal -> (uiv.Width, uiv.Depth)
         | Orientation.Sagittal -> (uiv.Height, uiv.Depth)
 
-    let updatePixelsFromVolume (uiv:IUniformImageVolumeModel) (orientation:Orientation) (slice:int) (pixels:byte[,]) =
+    let updatePixelsFromVolume (uiv:IUniformImageVolumeModel) (orientation:Orientation) (slice:int) =
         let startTime : DateTime = DateTime.Now
         let msecStamp = (DateTime.Now - startTime).Milliseconds
         System.Diagnostics.Trace.WriteLine(
@@ -55,29 +55,28 @@ type MprGenerationFunction() =
         | Orientation.Sagittal ->
             let slice = slice + uiv.Width / 2 in 
                 if (slice < 0 || slice >= uiv.Width) then None else Some(slice)
-        |> Option.iter
+        |> Option.map
             (fun slice -> 
                 lock (uiv) 
                     (fun () -> 
+                        let (width, height) = calculateSize uiv orientation
                         // now update based on the orientation
                         match orientation with
                         | Orientation.Transverse ->
-                            pixels 
-                            |> Array2D.iteri (fun x y _ -> pixels.[x, y] <- uiv.Voxels.[slice, y, x])
+                            Array2D.init width height (fun x y -> uiv.Voxels.[slice, y, x])
                         | Orientation.Coronal ->
-                            pixels
-                            |> Array2D.iteri (fun x y _ -> pixels.[x, y] <- uiv.Voxels.[y, slice, x])
+                            Array2D.init width height (fun x y -> uiv.Voxels.[y, slice, x])
                         | Orientation.Sagittal ->
-                            pixels
-                            |> Array2D.iteri (fun x y _ -> pixels.[x, y] <- uiv.Voxels.[y, x, slice])))
+                            Array2D.init width height (fun x y -> uiv.Voxels.[y, x, slice])))
  
     interface IMprGenerationFunction with 
         member this.GenerateMprAsync(inputVolume:IUniformImageVolumeModel, outImage:MprImageModelBase, nSlicePosition:int) =
             let (width, height) = calculateSize inputVolume outImage.MprOrientation
             async { 
-                let pixels = Array2D.zeroCreate width height
-                updatePixelsFromVolume inputVolume outImage.MprOrientation outImage.SlicePosition pixels
-                return pixels
+                let pixelsOption = updatePixelsFromVolume inputVolume outImage.MprOrientation outImage.SlicePosition
+                match pixelsOption with
+                | Some pixels -> return pixels 
+                | None -> return null
             }  |> Async.StartAsTask
 
 

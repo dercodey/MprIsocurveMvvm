@@ -90,15 +90,22 @@ namespace RenderModule.ViewModels
         // 
         private void UpdateImageSource(MprImageModelBase mpr, byte[,] pixels)
         {
-            int height = pixels.GetLength(0);
-            int width = pixels.GetLength(1);
+            if (pixels != null)
+            {
+                int height = pixels.GetLength(0);
+                int width = pixels.GetLength(1);
 
-            byte[] flatPixels = FlattenPixels(pixels);            
-            MprBuffer = BitmapSource.Create(width, height, 
-                96.0, 96.0, PixelFormats.Gray8, null, flatPixels, width);
+                byte[] flatPixels = FlattenPixels(pixels);
+                MprBuffer = BitmapSource.Create(width, height,
+                    96.0, 96.0, PixelFormats.Gray8, null, flatPixels, width);
 
-            // update the position
-            ImagePosition = new TranslateTransform(-width / 2, -height / 2);
+                // update the position
+                ImagePosition = new TranslateTransform(-width / 2, -height / 2);
+            }
+            else
+            {
+                MprBuffer = null;
+            }
         }
 
         private static byte[] FlattenPixels(byte[,] pixels)
