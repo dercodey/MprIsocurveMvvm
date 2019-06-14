@@ -4,10 +4,14 @@ using System.Threading.Tasks;
 using System.Windows;
 using FsRenderModule.Interfaces;
 using RenderModule.Interfaces;
+using FsRenderModule.Interfaces;
 using RenderModule.Models;
 
 namespace RenderModule.Services
 {
+    using LineSegments = List<Point>;
+    using ComplexGeometry = List<List<Point>>;
+
     /// <summary>
     /// 
     /// </summary>
@@ -19,8 +23,7 @@ namespace RenderModule.Services
         /// <param name="fromImage"></param>
         /// <param name="threshold"></param>
         /// <returns></returns>
-        public async Task<ComplexGeometry> 
-            GenerateIsocurveAsync(MprImageModelBase fromImage, float threshold)
+        public async Task<ComplexGeometry> GenerateIsocurveAsync(MprImageModelBase fromImage, double threshold)
         {
             var geometry = new ComplexGeometry();
 

@@ -1,10 +1,15 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
 using System.Windows.Media;
 
 using Prism.Mvvm;
 
 namespace RenderModule.Models
 {
+    using LineSegments = List<Point>;
+    using ComplexGeometry = List<List<Point>>;
+
     /// <summary>
     /// Generates and update isocurves bindable to the Geometry path
     /// </summary>

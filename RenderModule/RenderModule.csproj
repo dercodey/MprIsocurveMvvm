@@ -80,8 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IFrameUpdateManager.cs" />
-    <Compile Include="Interfaces\IIsocurveFunction.cs" />
-    <Compile Include="Models\ComplexGeometry.cs" />
     <Compile Include="Models\IsocurveLevel.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

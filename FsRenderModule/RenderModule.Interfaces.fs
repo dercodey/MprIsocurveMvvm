@@ -4,6 +4,7 @@ open System
 open System.Threading
 open System.Threading.Tasks
 open Infrastructure.Interfaces
+open System.Windows
 
 type Orientation =
 | Transverse = 0
@@ -27,6 +28,11 @@ and MprImageModelBase(mprFunction:IMprGenerationFunction) =
         else false
     member this.GetPixelsAsync() =
         mprFunction.GenerateMprAsync(this.InputVolume, this, this.SlicePosition)
+
+type LineSegments = System.Collections.Generic.List<Point>
+type ComplexGeometry = System.Collections.Generic.List<LineSegments>
+type IIsocurveFunction = 
+    abstract member GenerateIsocurveAsync : fromImage:MprImageModelBase * threshold:float -> Task<ComplexGeometry>
 
 type IRenderedObject = 
     abstract member UpdateRenderedObject : orientation:Orientation * nSliceNumber:int -> Task<Action>
