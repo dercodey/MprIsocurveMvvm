@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 using Infrastructure.Interfaces;
 
-using RenderModule.Interfaces;
+using FsRenderModule.Interfaces;
 using RenderModule.Models;
 
 namespace RenderModule.Services
@@ -22,7 +22,7 @@ namespace RenderModule.Services
         /// <param name="outImage"></param>
         /// <returns>task with byte array future</returns>
         public async Task<byte[,]> 
-            GenerateMprAsync(IUniformImageVolumeModel inputVolume, MprImageModel outImage)
+            GenerateMprAsync(IUniformImageVolumeModel inputVolume, MprImageModelBase outImage)
         {
             int width, height;
             CalculateSize(inputVolume, outImage.MprOrientation, out width, out height);
@@ -48,24 +48,24 @@ namespace RenderModule.Services
         /// <param name="orientation"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        static void CalculateSize(IUniformImageVolumeModel uiv, MprImageModel.Orientation orientation, 
+        static void CalculateSize(IUniformImageVolumeModel uiv, Orientation orientation, 
             out int width, out int height)
         {
             width = 0;
             height = 0;
             switch (orientation)
             {
-                case MprImageModel.Orientation.Transverse:
+                case Orientation.Transverse:
                     width = uiv.Width;
                     height = uiv.Height;
                     break;
 
-                case MprImageModel.Orientation.Coronal:
+                case Orientation.Coronal:
                     width = uiv.Width;
                     height = uiv.Depth;
                     break;
 
-                case MprImageModel.Orientation.Sagittal:
+                case Orientation.Sagittal:
                     width = uiv.Height;
                     height = uiv.Depth;
                     break;
@@ -87,7 +87,7 @@ namespace RenderModule.Services
         /// <param name="slice"></param>
         /// <param name="pixels"></param>
         static void UpdatePixelsFromVolume(IUniformImageVolumeModel uiv,
-            MprImageModel.Orientation orientation, int slice, ref byte[,] pixels)
+            Orientation orientation, int slice, ref byte[,] pixels)
         {
             // create a log to debug output
             var msecStamp = (DateTime.Now - startTime).Milliseconds;
@@ -101,19 +101,19 @@ namespace RenderModule.Services
             // check for bounds based on the orientation
             switch (orientation)
             {
-                case MprImageModel.Orientation.Transverse:
+                case Orientation.Transverse:
                     slice += uiv.Depth / 2;
                     if (slice < 0 || slice >= uiv.Depth)
                         return;
                     break;
 
-                case MprImageModel.Orientation.Coronal:
+                case Orientation.Coronal:
                     slice += uiv.Height / 2;
                     if (slice < 0 || slice >= uiv.Height)
                         return;
                     break;
 
-                case MprImageModel.Orientation.Sagittal:
+                case Orientation.Sagittal:
                     slice += uiv.Width / 2;
                     if (slice < 0 || slice >= uiv.Width)
                         return;
@@ -125,19 +125,19 @@ namespace RenderModule.Services
                 // now update based on the orientation
                 switch (orientation)
                 {
-                    case MprImageModel.Orientation.Transverse:
+                    case Orientation.Transverse:
                         for (int y = 0; y < pixels.GetLength(0); y++)
                             for (int x = 0; x < pixels.GetLength(1); x++)
                                 pixels[y, x] = uiv.Voxels[slice, y, x];
                         break;
 
-                    case MprImageModel.Orientation.Coronal:
+                    case Orientation.Coronal:
                         for (int y = 0; y < pixels.GetLength(0); y++)
                             for (int x = 0; x < pixels.GetLength(1); x++) 
                                 pixels[y, x] = uiv.Voxels[y, slice, x];
                         break;
 
-                    case MprImageModel.Orientation.Sagittal:
+                    case Orientation.Sagittal:
                         for (int y = 0; y < pixels.GetLength(0); y++)
                             for (int x = 0; x < pixels.GetLength(1); x++) 
                                 pixels[y, x] = uiv.Voxels[y, x, slice];

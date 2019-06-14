@@ -16,12 +16,10 @@ using Infrastructure.Interfaces;
 
 using RenderModule.Models;
 using RenderModule.Interfaces;
-
+using FsRenderModule.Interfaces;
 
 namespace RenderModule.ViewModels
 {
-    using Orientation = MprImageModel.Orientation;
-
     /// <summary>
     /// Generates and update isocurves bindable to the Geometry path
     /// </summary>

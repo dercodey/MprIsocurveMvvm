@@ -18,6 +18,7 @@ using Infrastructure.Events;
 using Infrastructure.Interfaces;
 
 using RenderModule.Interfaces;
+using FsRenderModule.Interfaces;
 using RenderModule.Models;
 
 namespace RenderModule.ViewModels
@@ -215,7 +216,7 @@ namespace RenderModule.ViewModels
                 // get the task that is producing the update action
                 Task<Action> uiUpdateAction = 
                     ro.UpdateRenderedObject(Mapper.Map<PresentationStateViewModel.Orientation,
-                                                MprImageModel.Orientation>(PresentationState.ViewOrientation),
+                                                Orientation>(PresentationState.ViewOrientation),
                         (int) PresentationState.SlicePosition);
 
                 // queue up the task

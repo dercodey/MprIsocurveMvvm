@@ -11,12 +11,10 @@ using Infrastructure.Utilities;
 using Infrastructure.Interfaces;
 
 using RenderModule.Models;
-using RenderModule.Interfaces;
+using FsRenderModule.Interfaces;
 
 namespace RenderModule.ViewModels
 {
-    using Orientation = MprImageModel.Orientation;
-
     /// <summary>
     /// 
     /// </summary>
@@ -79,7 +77,7 @@ namespace RenderModule.ViewModels
         public async Task<Action> UpdateRenderedObject(Orientation orientation, int nSliceNumber)
         {
             var mpr = this.MprImageModel;
-            var mprOrientation = Mapper.Map<Orientation, MprImageModel.Orientation>(orientation);
+            var mprOrientation = Mapper.Map<Orientation, Orientation>(orientation);
             var bUpdated = MprImageModel.CheckAndUpdate(ref mpr, mprOrientation, nSliceNumber);
             if (bUpdated)
             {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-
+using FsRenderModule.Interfaces;
 using Infrastructure.Interfaces;
 
 using RenderModule.Interfaces;
@@ -10,11 +10,12 @@ namespace RenderModule.Models
     /// <summary>
     /// 
     /// </summary>
-    public class MprImageModel
+    public class MprImageModel : MprImageModelBase
     {
         IMprGenerationFunction _mprFunction;
 
         public MprImageModel(IMprGenerationFunction mprFunction)
+            : base(mprFunction)
         {
             _mprFunction = mprFunction;
         }
@@ -38,13 +39,13 @@ namespace RenderModule.Models
                 switch (orientation)
                 {
                     case Orientation.Coronal:
-                        mpr.MprOrientation = MprImageModel.Orientation.Coronal;
+                        mpr.MprOrientation = Orientation.Coronal;
                         break;
                     case Orientation.Sagittal:
-                        mpr.MprOrientation = MprImageModel.Orientation.Sagittal;
+                        mpr.MprOrientation = Orientation.Sagittal;
                         break;
                     case Orientation.Transverse:
-                        mpr.MprOrientation = MprImageModel.Orientation.Transverse;
+                        mpr.MprOrientation = Orientation.Transverse;
                         break;
                 }
                 mpr.SlicePosition = nSliceNumber;
@@ -53,36 +54,6 @@ namespace RenderModule.Models
 
             return bUpdated;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Guid InputVolumeGuid { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IUniformImageVolumeModel InputVolume { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public enum Orientation
-        {
-            Transverse,
-            Sagittal,
-            Coronal
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Orientation MprOrientation { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public int SlicePosition { get; set; }
 
         /// <summary>
         /// 
@@ -97,7 +68,7 @@ namespace RenderModule.Models
             { 
                 _taskMprOrientation = MprOrientation;
                 _taskSlicePosition = SlicePosition;
-                _pixelTask = _mprFunction.GenerateMprAsync(InputVolume, this);
+                _pixelTask = this._mprFunction.GenerateMprAsync(InputVolume, this);
                 _volumeSlicesCompleted = InputVolume.SlicesCompleted;
             }
             return await _pixelTask;

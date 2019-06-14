@@ -6,6 +6,7 @@ using Prism.Modularity;
 using Prism.Regions;
 
 using RenderModule.Interfaces;
+using FsRenderModule.Interfaces;
 using RenderModule.Models;
 using RenderModule.Services;
 using RenderModule.ViewModels;
@@ -33,7 +34,7 @@ namespace RenderModule
                 new ContainerControlledLifetimeManager());
 
             Mapper.Initialize(cfg => {
-                cfg.CreateMap<PresentationStateViewModel.Orientation, MprImageModel.Orientation>();
+                cfg.CreateMap<PresentationStateViewModel.Orientation, Orientation>();
             });
         }
 
