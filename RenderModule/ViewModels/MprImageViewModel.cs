@@ -79,17 +79,12 @@ namespace RenderModule.ViewModels
             var mpr = this.MprImageModel;
             var mprOrientation = Mapper.Map<Orientation, Orientation>(orientation);
             var bUpdated = mpr.CheckAndUpdate(mprOrientation, nSliceNumber);
-            if (true) // bUpdated)
-            {
-                _counter.StartEvent();
-                var pixels = await mpr.GetPixelsAsync();
-                _counter.EndEvent();
+            _counter.StartEvent();
+            var pixels = await mpr.GetPixelsAsync();
+            _counter.EndEvent();
 
-                // perform the update on the UI thread
-                return (() => UpdateImageSource(mpr, pixels));
-            }
-
-            return (() => { });
+            // perform the update on the UI thread
+            return (() => UpdateImageSource(mpr, pixels));
         }
 
         // 
