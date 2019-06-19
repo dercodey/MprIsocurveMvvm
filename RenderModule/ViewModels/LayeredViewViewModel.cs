@@ -144,7 +144,9 @@ namespace RenderModule.ViewModels
             // setup the isocurves
             var isocurveVm = _container.Resolve<IsocurveViewModel>();
             isocurveVm.SetPerformanceCounter(_passiveLayerPerformance);
+#if GENERATE_ISOCURVES
             isocurveVm.MprImageModel = mprImageModel;
+#endif
             PassiveLayer.Add(isocurveVm);
 
             isocurveVm.PopulateIsocurveRange(10);

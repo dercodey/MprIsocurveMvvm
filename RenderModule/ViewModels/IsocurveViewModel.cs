@@ -119,33 +119,39 @@ namespace RenderModule.ViewModels
             // get and attempt update of the MPR image
             var mpr = MprImageModel;
 
-            var updateTask = 
-                Task.Run<Action>(async () =>
-                {
+            if (mpr != null)
+            {
+                var updateTask =
+                    Task.Run<Action>(async () =>
+                    {
                     // contains the actions to update each isocurve
                     var isocurveUpdateActions = new List<Action>();
 
-                    var isocurveFunction = _container.Resolve<IIsocurveFunction>();
+                        var isocurveFunction = _container.Resolve<IIsocurveFunction>();
 
-                    _counter.StartEvent();
+                        _counter.StartEvent();
 
-                    foreach (var isocurveLevel in IsocurveLevels)
-                    {
-                        var geometry = await 
-                            isocurveFunction.GenerateIsocurveAsync(mpr, isocurveLevel.Threshold);
+                        foreach (var isocurveLevel in IsocurveLevels)
+                        {
+                            var geometry = await
+                                isocurveFunction.GenerateIsocurveAsync(mpr, isocurveLevel.Threshold);
 
                         // add level with its geometry
                         isocurveUpdateActions.Add(() => isocurveLevel.UpdateGeometry(geometry));
-                    }
+                        }
 
-                    _counter.EndEvent();
+                        _counter.EndEvent();
 
                     // on UI thread need to update the bound geometry
                     return (() => isocurveUpdateActions.ForEach(action => action.Invoke()));
-                });
+                    });
 
-            return await updateTask;
+                return await updateTask;
+            }
+            else
+            {
+                return () => { };
+            }
         }
-
     }
 }
