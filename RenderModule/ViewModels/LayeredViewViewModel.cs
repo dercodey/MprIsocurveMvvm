@@ -134,7 +134,7 @@ namespace RenderModule.ViewModels
             // create a new MPR vm
             var mprImageVm = _container.Resolve<MprImageViewModel>();
             mprImageVm.SetPerformanceCounter(_backgroundLayerPerformance);
-            mprImageVm.MprImageModel = mprImageModel;
+            mprImageVm.VolumeGuid = e.ImageVolumeGuid;
             BackgroundLayer.Add(mprImageVm);
 
             // remove any isocurve vms from background layer

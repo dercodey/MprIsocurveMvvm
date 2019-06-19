@@ -5,12 +5,8 @@ using System.Windows.Media.Imaging;
 
 using Prism.Mvvm;
 
-using AutoMapper;
-
 using Infrastructure.Utilities;
 using Infrastructure.Interfaces;
-
-using RenderModule.Models;
 using FsRenderModule.Interfaces;
 
 namespace RenderModule.ViewModels
@@ -21,21 +17,18 @@ namespace RenderModule.ViewModels
     public class MprImageViewModel : BindableBase, IRenderedObject
     {
         IModelRepository _repository;
+        IMprGenerationFunction _mprGenerator;
 
-        public MprImageViewModel(IModelRepository repository)
+        public MprImageViewModel(IModelRepository repository, IMprGenerationFunction mprGenerator)
         {
             _repository = repository;
+            _mprGenerator = mprGenerator;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public MprImageModelBase MprImageModel { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Guid MprGuid { get; set; }
+        public Guid VolumeGuid { get; set; }
 
         /// <summary>
         /// 
@@ -76,19 +69,18 @@ namespace RenderModule.ViewModels
         /// <param name="uiResponseAction"></param>
         public async Task<Action> UpdateRenderedObject(Orientation orientation, int nSliceNumber)
         {
-            var mpr = this.MprImageModel;
-            var mprOrientation = Mapper.Map<Orientation, Orientation>(orientation);
-            var bUpdated = mpr.CheckAndUpdate(mprOrientation, nSliceNumber);
             _counter.StartEvent();
-            var pixels = await mpr.GetPixelsAsync();
+
+            var uiv = _repository.GetUniformImageVolume(VolumeGuid);
+            var pixels = await _mprGenerator.GenerateMprAsync(uiv, orientation, nSliceNumber);
             _counter.EndEvent();
 
             // perform the update on the UI thread
-            return (() => UpdateImageSource(mpr, pixels));
+            return (() => UpdateImageSource(pixels));
         }
 
         // 
-        private void UpdateImageSource(MprImageModelBase mpr, byte[,] pixels)
+        private void UpdateImageSource(byte[,] pixels)
         {
             if (pixels != null)
             {

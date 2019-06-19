@@ -12,7 +12,7 @@ type Orientation =
 | Coronal = 2
 
 type IMprGenerationFunction = 
-    abstract member GenerateMprAsync : inputVolume:IUniformImageVolumeModel * outImage:MprImageModelBase * nSlicePosition:int -> Task<byte[,]>
+    abstract member GenerateMprAsync : inputVolume:IUniformImageVolumeModel * orientation:Orientation * nSlicePosition:int -> Task<byte[,]>
 and MprImageModelBase(mprFunction:IMprGenerationFunction) = 
     member val InputVolumeGuid : Guid = Guid.Empty with get, set
     member val InputVolume : IUniformImageVolumeModel = null with get, set
@@ -27,7 +27,7 @@ and MprImageModelBase(mprFunction:IMprGenerationFunction) =
             true
         else false
     member this.GetPixelsAsync() =
-        mprFunction.GenerateMprAsync(this.InputVolume, this, this.SlicePosition)
+        mprFunction.GenerateMprAsync(this.InputVolume, this.MprOrientation, this.SlicePosition)
 
 type LineSegments = System.Collections.Generic.List<Point>
 type ComplexGeometry = System.Collections.Generic.List<LineSegments>
