@@ -46,6 +46,7 @@
     <Compile Include="RenderModule.Interfaces.fs" />
     <Compile Include="MprGeneration.fs" />
     <Compile Include="IsocurveGeneration.fs" />
+    <Compile Include="MprImageViewModel.fs" />
     <Compile Include="Module.fs" />
     <Content Include="packages.config" />
   </ItemGroup>
@@ -54,6 +55,10 @@
       <HintPath>..\packages\FSharp.Core.4.5.2\lib\net45\FSharp.Core.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="Prism">
+      <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
