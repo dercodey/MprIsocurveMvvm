@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Concurrent;
 
-using Microsoft.Practices.Unity;
+using Unity;
 
 using Infrastructure.Interfaces;
 using DataLoaderModule.Interfaces;
 using DataLoaderModule.Models;
+
 
 namespace DataLoaderModule.Services
 {

@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-using Microsoft.Practices.Unity;
+using Unity;
 
 using Prism.Mvvm;
 using Prism.Events;

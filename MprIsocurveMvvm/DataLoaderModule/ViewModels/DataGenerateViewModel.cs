@@ -2,9 +2,10 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 
+using Unity;
+
 using Prism.Mvvm;
 using Prism.Events;
-using Microsoft.Practices.Unity;
 
 using Infrastructure.Interfaces;
 using Infrastructure.Events;

@@ -1,11 +1,12 @@
 ﻿
-using Microsoft.Practices.Unity;
+using Unity;
 
 using Prism.Modularity;
 using Prism.Regions;
 using Prism.Events;
 
 using MprIsocurveGeneration.Views;
+using Prism.Ioc;
 
 namespace MprIsocurveGeneration
 {
@@ -22,9 +23,13 @@ namespace MprIsocurveGeneration
             _eventAggregator = eventAggregator;
         }
 
-        public void Initialize()
+        public void OnInitialized(IContainerProvider containerProvider)
         {
             _regionManager.RegisterViewWithRegion("SidebarRegion", typeof(IsocurveControlView));
+        }
+
+        public void RegisterTypes(IContainerRegistry containerRegistry)
+        {
         }
     }
 }

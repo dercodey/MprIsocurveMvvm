@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media.Media3D;
 
-using Microsoft.Practices.Unity;
+using Unity;
 
 using Prism.Events;
 using Prism.Mvvm;
